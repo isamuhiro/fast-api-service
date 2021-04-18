@@ -12,7 +12,7 @@ def get_blogs(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_blog(db: Session, blog: BlogCreate):
-    db_blog = models.Blog(body=blog.body, title=blog.title)
+    db_blog = models.Blog(**blog.dict())
     db.add(db_blog)
     db.commit()
     db.refresh(db_blog)
